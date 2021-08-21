@@ -16,13 +16,14 @@ namespace SOCKET_WRAPPER{
 
         public:
             cpp_socket(int domain, int service, int protocol, int port, u_long interface);
+            void test_connection(int);
+            int accept(int socket, const struct sockaddr *address, socklen_t address_len);
             int bind_socket(int socket, const struct sockaddr *address);
             int connect_socket(int socket, const struct sockaddr *address); 
             int listen(int socket, int backlog);
             int getConnection();
             int getSock();
             struct sockaddr_in getAddress();
-            void test_connection(int);
     };
 }
 

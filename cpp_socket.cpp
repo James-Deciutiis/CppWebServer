@@ -35,6 +35,12 @@ void SOCKET_WRAPPER::cpp_socket::test_connection(int test){
     }
 }
 
+int SOCKET_WRAPPER::cpp_socket::accept(int socket, const struct sockaddr *address, socklen_t address_len){
+    int retval = accept(socket, (struct sockaddr *)&address, address_len);
+    test_connection(retval);
+    return retval;
+}
+
 int SOCKET_WRAPPER::cpp_socket::getConnection(){
     return connection;
 }
