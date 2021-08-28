@@ -1,8 +1,8 @@
-output: main.o
-	g++ main.o -o output
+output: cpp_tcp_server.o
+	g++ cpp_tcp_server.o -o output
 
-main.o: main.cpp
-	g++ -c main.cpp
+cpp_tcp_server.o: cpp_tcp_server.cpp
+	g++ -c cpp_tcp_server.cpp
 
 clean:
 	rm *.o output -r
