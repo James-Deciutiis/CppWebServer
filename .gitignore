@@ -2,4 +2,4 @@
 *.out
 client.cpp
 compile_commands.json
-.gitignore
+.*
