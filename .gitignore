@@ -3,3 +3,4 @@
 client.cpp
 compile_commands.json
 .*
+output
