@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iostream>
 #include "cpp_socket.cpp"
-#include "utilities/utilities.cpp"
 
 #define PORT 8080
 int main(int argv, char** argc){
@@ -22,15 +21,10 @@ int main(int argv, char** argc){
 
         new_socket = sever_fd.accept_socket(sever_fd.getSock(), (struct sockaddr*) &address, (socklen_t *) &address_len);
 
-        char buffer[30000] = {0};
-        valread = sever_fd.read_socket(new_socket, buffer, 30000);
-        std::cout << "Message: " << buffer << std::endl;
+        char request_buffer[30000] = {0};
+        valread = sever_fd.read_socket(new_socket, request_buffer, 30000);
+        std::cout << "Message: " << request_buffer << std::endl;
 
-        std::string file_to_get = utililities::parseForPath(buffer);
-        std::string fp = utililities::route(file_to_get);
-        char* response = utililities::reponse(fp);
-        
-        sever_fd.write_socket(new_socket, response, strlen(response));
         std::cout << "**Message Sent!**" << std::endl;
 
         sever_fd.close_socket(new_socket);
