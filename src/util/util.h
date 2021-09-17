@@ -22,13 +22,14 @@ namespace util{
                 asset_type type;
                 valid_pages page;
                 std::string extension;
-                std::string transmission;
+                char* transmission;
                 std::string file_path;
 
             public:
-                response(std::string request_buffer);
+                response(char* request_buffer);
                 valid_pages string_code(std::string page);
                 char* respond(std::string fp);
+                char* getTransmission();
                 std::string parseForPath(char* buffer);            
                 std::string route(std::string request);
         };

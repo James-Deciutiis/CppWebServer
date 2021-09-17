@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include "cpp_socket.cpp"
+#include "util/util.cpp"
 
 #define PORT 8080
 int main(int argv, char** argc){
@@ -24,9 +25,9 @@ int main(int argv, char** argc){
         char request_buffer[30000] = {0};
         valread = sever_fd.read_socket(new_socket, request_buffer, 30000);
         std::cout << "Message: " << request_buffer << std::endl;
-
+        util::response res(request_buffer);
+        sever_fd.write_socket(new_socket, res.getTransmission(), strlen(res.getTransmission()));
         std::cout << "**Message Sent!**" << std::endl;
-
         sever_fd.close_socket(new_socket);
     }
 

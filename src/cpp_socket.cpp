@@ -18,7 +18,7 @@ namespace SOCKET_WRAPPER{
 
         //Magic numbers are not good... I will change this later.
         listening = socket_listen(sock, 10);
-        std::cout<<"Socket Listening"<<std::endl;
+        std::cout<<"Socket Listening on Port: "<<port<<std::endl;
         test_connection(listening);
     }
 

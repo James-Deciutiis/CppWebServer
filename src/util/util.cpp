@@ -1,9 +1,11 @@
 #include "util.h"
 
 namespace util{
-    response::response(std::string request_buffer){
+    response::response(char* request_buffer){
         file_path = parseForPath(request_buffer);
         type = util::asset_type::image;
+        file_path = route(file_path);
+        transmission = respond(file_path);
     }
 
     valid_pages response::string_code(std::string page){
@@ -39,6 +41,7 @@ namespace util{
 
         char* message = new char[transmission_length + 1];
         strcpy(message, &message_string[0]);
+        std::cout<<"Transmission: "<<message<<std::endl;
 
         return message;
     }
@@ -70,6 +73,10 @@ namespace util{
             default:
                 return "dne";
         }
+    }
+
+    char* response::getTransmission(){
+        return transmission;
     }
 }
 
