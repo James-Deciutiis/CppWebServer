@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 
 namespace util{
         enum valid_pages{

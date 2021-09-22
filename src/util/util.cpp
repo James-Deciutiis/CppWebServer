@@ -25,9 +25,14 @@ namespace util{
             return &error[0];
         }
 
-        std::ifstream file(fp);
+        std::ifstream file("../assets/pages/index.html", std::ios::binary);
         std::string line;
         std::string file_transmission;
+
+        if(!file){
+            perror("Invalid Resource");
+        }
+
         if(file.is_open()){
             while(getline(file, line)){
                 file_transmission+=line;
@@ -35,13 +40,10 @@ namespace util{
         }
 
         int transmission_length = strlen((char *) &file_transmission[0]) + 100;
-
         std::string header("HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: ");
         std::string message_string = header + std::to_string(transmission_length)+ "\n\n" + file_transmission;
-
         char* message = new char[transmission_length + 1];
         strcpy(message, &message_string[0]);
-        std::cout<<"Transmission: "<<message<<std::endl;
 
         return message;
     }
@@ -67,9 +69,9 @@ namespace util{
     std::string response::route(std::string request){
         switch(string_code(request)){
             case valid_pages::index:
-                return "../../assets/pages/index.html";
+                return "../assets/pages/index.html";
             case valid_pages::cat_1:
-                return "../../assets/images/cat-1.jpg";;
+                return "../assets/images/cat-1.jpg";;
             default:
                 return "dne";
         }
